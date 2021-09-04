@@ -23,7 +23,7 @@ class CollectionToolsTest : FreeSpec({
             actual shouldBe expected
         }
 
-        "List<T>.swapped(() -> Boolean, () -> Boolean)" {
+        "List<T>.swapped((T) -> Boolean, (T) -> Boolean)" {
             val actual = list.swappedByCondition({ it == "A" }, { it == "D" })
             actual shouldBe expected
         }

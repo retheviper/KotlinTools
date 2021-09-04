@@ -16,16 +16,15 @@ class CollectionToolsTest : FreeSpec({
     "List<T>.swapped" - {
 
         val list = listOf("A", "B", "C", "D")
+        val expected = listOf("D", "B", "C", "A")
 
         "List<T>.swapped(Int, Int)" {
             val actual = list.swappedByIndex(0, 3)
-            val expected = listOf("D", "B", "C", "A")
             actual shouldBe expected
         }
 
         "List<T>.swapped(() -> Boolean, () -> Boolean)" {
             val actual = list.swappedByCondition({ it == "A" }, { it == "D" })
-            val expected = listOf("D", "B", "C", "A")
             actual shouldBe expected
         }
     }

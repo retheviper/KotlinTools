@@ -12,10 +12,9 @@ class NioToolsTest : FreeSpec({
     "Path.createIfNotExists" {
         val parent = Path.of("/","tmp", "kotlin", "tools")
         val file = Path.of(UUID.randomUUID().toString() + LocalDateTime.now())
-        val path = parent.resolve(file)
 
-        run {
-            path.createIfNotExists()
+        val path = parent.resolve(file).apply {
+            createIfNotExists()
         }
 
         val actual = Files.exists(path)

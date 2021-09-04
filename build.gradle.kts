@@ -1,9 +1,7 @@
 plugins {
     kotlin("jvm") version "1.5.30"
+    id("maven-publish")
 }
-
-group = "com.retheviper.kotlintools"
-version = "1.0-SNAPSHOT"
 
 repositories {
     mavenCentral()
@@ -22,17 +20,29 @@ dependencies {
 tasks {
     compileKotlin {
         kotlinOptions {
-            jvmTarget = "11"
+            jvmTarget = JavaVersion.VERSION_11.toString()
         }
     }
 
     compileTestKotlin {
         kotlinOptions {
-            jvmTarget = "11"
+            jvmTarget = JavaVersion.VERSION_11.toString()
         }
     }
 
     test {
         useJUnitPlatform()
+    }
+}
+
+publishing {
+    publications {
+        create<MavenPublication>("maven") {
+            groupId = "com.retheviper"
+            artifactId = "kotlintools"
+            version = "0.1"
+
+            from(components["java"])
+        }
     }
 }

@@ -49,6 +49,18 @@ class DateAndTimeToolsTest : FreeSpec({
         actual shouldBe yearMonths
     }
 
+    "LocalDate.minus" {
+        val expected = 365L
+        val actual = LocalDate.of(2020, 1, 1) - LocalDate.of(2020, 12, 31)
+        actual shouldBe expected
+    }
+
+    "LocalDate.ageAt" {
+        val expected = 20
+        val actual = LocalDate.of(2000, 1, 1).ageAt(LocalDate.of(2020, 1, 1))
+        actual shouldBe expected
+    }
+
     "LocalDateTime.atStartOfDay" {
         dates.forEach {
             val actual = it.atTime(10, 10, 10).atStartOfDay()

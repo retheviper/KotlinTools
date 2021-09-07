@@ -1,5 +1,11 @@
 package com.retheviper.kotlintools.collection
 
+import java.io.File
+import java.io.FileOutputStream
+import java.io.InputStream
+import java.nio.file.Files
+import java.nio.file.Path
+
 /**
  * Swap index of elements of given indices.
  */

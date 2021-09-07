@@ -2,8 +2,10 @@ package com.retheviper.kotlintools.time
 
 import java.time.LocalDate
 import java.time.LocalDateTime
+import java.time.Period
 import java.time.YearMonth
 import java.time.format.DateTimeFormatter
+import java.time.temporal.ChronoUnit
 import java.time.temporal.Temporal
 
 /**
@@ -15,6 +17,16 @@ fun LocalDate.isEndOfMonth(): Boolean = dayOfMonth == lengthOfMonth()
  * Gets the [YearMonth] part of this date.
  */
 fun LocalDate.toYearMonth(): YearMonth = YearMonth.from(this)
+
+/**
+ * Calculates the amount of days between two [LocalDate]s.
+ */
+operator fun LocalDate.minus(date: LocalDate): Long = ChronoUnit.DAYS.between(this, date)
+
+/**
+ * Calculates age from [LocalDate] to [date].
+ */
+fun LocalDate.ageAt(date: LocalDate): Int = Period.between(this, date).years
 
 /**
  * Returns this [LocalDateTime] formed from this date at the time of midnight, 00:00, at the start of this date.

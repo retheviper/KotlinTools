@@ -2,7 +2,7 @@
 
 ## TL;DR
 
-Simple extension functions.
+Collections of simple functions, just like some shortcuts.
 
 ## To use (at Gradle)
 
@@ -18,7 +18,7 @@ Simple extension functions.
 
 ```kotlin
 dependencies {
-    implementation(files("libs/kotlintools-1.0-SNAPSHOT.jar"))
+    implementation(files("libs/kotlintools.jar"))
 }
 ```
 

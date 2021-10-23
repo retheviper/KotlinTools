@@ -8,7 +8,6 @@ import java.nio.file.Path
  */
 fun Path.createIfNotExists() {
     if (Files.notExists(this)) {
-        val parent = this.parent
         if (Files.notExists(parent)) {
             Files.createDirectories(parent)
         }

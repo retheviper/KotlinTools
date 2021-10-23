@@ -1,5 +1,5 @@
 plugins {
-    kotlin("jvm") version "1.5.30"
+    kotlin("jvm") version "1.5.31"
     id("maven-publish")
 }
 
@@ -14,7 +14,7 @@ java {
 
 dependencies {
     // Test
-    testImplementation("io.kotest:kotest-runner-junit5:4.6.1")
+    testImplementation("io.kotest:kotest-runner-junit5:4.6.3")
 }
 
 tasks {

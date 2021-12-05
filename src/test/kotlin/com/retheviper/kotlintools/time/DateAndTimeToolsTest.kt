@@ -7,6 +7,8 @@ import java.text.DecimalFormat
 import java.time.LocalDate
 import java.time.YearMonth
 import java.time.format.DateTimeParseException
+import java.time.format.TextStyle
+import java.util.*
 
 class DateAndTimeToolsTest : FreeSpec({
 
@@ -148,6 +150,26 @@ class DateAndTimeToolsTest : FreeSpec({
                 "昭和" to showa.getJapaneseEra(),
                 "平成" to heisei.getJapaneseEra(),
                 "令和" to reiwa.getJapaneseEra()
+            ).forEach { (expected, actual) ->
+                actual shouldBe expected
+            }
+
+            mapOf(
+                "M" to meiji.getJapaneseEra(textStyle = TextStyle.NARROW),
+                "T" to taisho.getJapaneseEra(textStyle = TextStyle.NARROW),
+                "S" to showa.getJapaneseEra(textStyle = TextStyle.NARROW),
+                "H" to heisei.getJapaneseEra(textStyle = TextStyle.NARROW),
+                "R" to reiwa.getJapaneseEra(textStyle = TextStyle.NARROW)
+            ).forEach { (expected, actual) ->
+                actual shouldBe expected
+            }
+
+            mapOf(
+                "Meiji" to meiji.getJapaneseEra(locale = Locale.ENGLISH),
+                "Taishō" to taisho.getJapaneseEra(locale = Locale.ENGLISH),
+                "Shōwa" to showa.getJapaneseEra(locale = Locale.ENGLISH),
+                "Heisei" to heisei.getJapaneseEra(locale = Locale.ENGLISH),
+                "Reiwa" to reiwa.getJapaneseEra(locale = Locale.ENGLISH)
             ).forEach { (expected, actual) ->
                 actual shouldBe expected
             }

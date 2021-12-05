@@ -1,12 +1,10 @@
 package com.retheviper.kotlintools.time
 
-import java.lang.IllegalStateException
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.Period
 import java.time.YearMonth
 import java.time.chrono.JapaneseDate
-import java.time.chrono.JapaneseEra
 import java.time.format.DateTimeFormatter
 import java.time.format.TextStyle
 import java.time.temporal.ChronoField
@@ -72,8 +70,8 @@ fun LocalDate.getJapaneseYear(): Int = JapaneseDate.from(this).get(ChronoField.Y
 /**
  * Get current japanese era name of its year.
  */
-fun LocalDate.getJapaneseEra(locale: Locale = Locale.JAPAN): String =
-    JapaneseDate.from(this).era.getDisplayName(TextStyle.FULL, locale)
+fun LocalDate.getJapaneseEra(textStyle: TextStyle = TextStyle.FULL, locale: Locale = Locale.JAPAN): String =
+    JapaneseDate.from(this).era.getDisplayName(textStyle, locale)
 
 /**
  * Get current japanese era name of its year as unicode.

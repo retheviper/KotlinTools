@@ -166,8 +166,8 @@ class DateAndTimeToolsTest : FreeSpec({
 
             mapOf(
                 "Meiji" to meiji.getJapaneseEra(locale = Locale.ENGLISH),
-                "Taishō" to taisho.getJapaneseEra(locale = Locale.ENGLISH),
-                "Shōwa" to showa.getJapaneseEra(locale = Locale.ENGLISH),
+                "Taisho" to taisho.getJapaneseEra(locale = Locale.ENGLISH),
+                "Showa" to showa.getJapaneseEra(locale = Locale.ENGLISH),
                 "Heisei" to heisei.getJapaneseEra(locale = Locale.ENGLISH),
                 "Reiwa" to reiwa.getJapaneseEra(locale = Locale.ENGLISH)
             ).forEach { (expected, actual) ->

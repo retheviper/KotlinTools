@@ -1,12 +1,18 @@
 package com.retheviper.kotlintools.time
 
+import java.lang.IllegalStateException
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.Period
 import java.time.YearMonth
+import java.time.chrono.JapaneseDate
+import java.time.chrono.JapaneseEra
 import java.time.format.DateTimeFormatter
+import java.time.format.TextStyle
+import java.time.temporal.ChronoField
 import java.time.temporal.ChronoUnit
 import java.time.temporal.Temporal
+import java.util.*
 
 /**
  * Returns whether the date is the last day of the month.
@@ -57,3 +63,27 @@ fun YearMonth.toInt(): Int = toDigit()
  * Parses Int number from it and returns the result.
  */
 private fun Temporal.toDigit(): Int = toString().filter { it.isDigit() }.toInt()
+
+/**
+ * Get year value within current japanese Era.
+ */
+fun LocalDate.getJapaneseYear(): Int = JapaneseDate.from(this).get(ChronoField.YEAR_OF_ERA)
+
+/**
+ * Get current japanese era name of its year.
+ */
+fun LocalDate.getJapaneseEra(locale: Locale = Locale.JAPAN): String =
+    JapaneseDate.from(this).era.getDisplayName(TextStyle.FULL, locale)
+
+/**
+ * Get current japanese era name of its year as unicode.
+ */
+fun LocalDate.getJapaneseEraUnicode(): String =
+    when (JapaneseDate.from(this).era.value) {
+        -1 -> "\u337e"
+        0 -> "\u337d"
+        1 -> "\u337c"
+        2 -> "\u337b"
+        3 -> "\u32ff"
+        else -> throw IllegalStateException("not supported")
+    }

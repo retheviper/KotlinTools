@@ -121,4 +121,48 @@ class DateAndTimeToolsTest : FreeSpec({
             actual shouldBe expected
         }
     }
+
+    "LocalDate.getJapanese" - {
+        val meiji = LocalDate.of(1880, 12, 31)
+        val taisho = LocalDate.of(1920, 12, 31)
+        val showa = LocalDate.of(1980, 12, 31)
+        val heisei = LocalDate.of(2000, 12, 31)
+        val reiwa = LocalDate.of(2020, 12, 31)
+
+        "LocalDate.getJapaneseYear" {
+            mapOf(
+                13 to meiji.getJapaneseYear(),
+                9 to taisho.getJapaneseYear(),
+                55 to showa.getJapaneseYear(),
+                12 to heisei.getJapaneseYear(),
+                2 to reiwa.getJapaneseYear(),
+            ).forEach { (expected, actual) ->
+                actual shouldBe expected
+            }
+        }
+
+        "LocalDate.getJapaneseEra" {
+            mapOf(
+                "明治" to meiji.getJapaneseEra(),
+                "大正" to taisho.getJapaneseEra(),
+                "昭和" to showa.getJapaneseEra(),
+                "平成" to heisei.getJapaneseEra(),
+                "令和" to reiwa.getJapaneseEra()
+            ).forEach { (expected, actual) ->
+                actual shouldBe expected
+            }
+        }
+
+        "LocalDate.getJapaneseEraUnicode" {
+            mapOf(
+                "\u337e" to meiji.getJapaneseEraUnicode(),
+                "\u337d" to taisho.getJapaneseEraUnicode(),
+                "\u337c" to showa.getJapaneseEraUnicode(),
+                "\u337b" to heisei.getJapaneseEraUnicode(),
+                "\u32ff" to reiwa.getJapaneseEraUnicode()
+            ).forEach { (expected, actual) ->
+                actual shouldBe expected
+            }
+        }
+    }
 })

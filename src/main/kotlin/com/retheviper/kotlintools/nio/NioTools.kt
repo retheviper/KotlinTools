@@ -9,10 +9,10 @@ import java.util.zip.ZipOutputStream
  * Creates a new and empty file with its parent directories.
  */
 fun Path.createIfNotExists() {
+    if (Files.notExists(parent)) {
+        Files.createDirectories(parent)
+    }
     if (Files.notExists(this)) {
-        if (Files.notExists(parent)) {
-            Files.createDirectories(parent)
-        }
         Files.createFile(this)
     }
 }

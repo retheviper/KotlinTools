@@ -2,6 +2,8 @@ package com.retheviper.kotlintools.io
 
 import io.kotest.core.spec.style.FreeSpec
 import io.kotest.matchers.shouldBe
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 class IoToolsTest : FreeSpec({
 
@@ -11,17 +13,17 @@ class IoToolsTest : FreeSpec({
         val (inputStream, outputStream) = pipedStreams()
 
         outputStream.use {
-            runCatching {
+            withContext(Dispatchers.IO) {
                 it.write(result.toByteArray())
             }
         }
 
         val actual = inputStream.use {
-            runCatching {
+            withContext(Dispatchers.IO) {
                 String(inputStream.readAllBytes())
             }
         }
 
-        actual.getOrNull() shouldBe result
+        actual shouldBe result
     }
 })

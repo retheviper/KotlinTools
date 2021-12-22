@@ -21,6 +21,12 @@ fun Path.createIfNotExists() {
  * ZIP current path to [target].
  */
 fun Path.zipTo(target: Path) {
+    require(!Files.isDirectory(target)) {
+        "Target Path is directory"
+    }
+    require(!target.fileName.endsWith(".zip")) {
+        "Target's extension must be '.zip'"
+    }
     ZipOutputStream(Files.newOutputStream(target)).use { zip ->
         Files.walk(this)
             .filter { Files.isHidden(it).not() }

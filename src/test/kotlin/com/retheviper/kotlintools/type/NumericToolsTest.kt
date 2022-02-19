@@ -6,66 +6,66 @@ import java.math.BigDecimal
 
 class NumericToolsTest: FreeSpec({
 
-    "Number.asNonnegative" - {
-        "Int.asNonnegative" {
+    "Number.zeroIfMinus" - {
+        "Int.zeroIfMinus" {
             val number = 10 - 20
-            val actual = number.asNonnegative()
+            val actual = number.zeroIfMinus()
             actual shouldBe 0
         }
 
-        "Long.asNonnegative" {
+        "Long.zeroIfMinus" {
             val number = 10L - 20L
-            val actual = number.asNonnegative()
+            val actual = number.zeroIfMinus()
             actual shouldBe 0L
         }
 
-        "Float.asNonnegative" {
+        "Float.zeroIfMinus" {
             val number = 10.0F - 20.0F
-            val actual = number.asNonnegative()
+            val actual = number.zeroIfMinus()
             actual shouldBe 0.0F
         }
 
-        "Double.asNonnegative" {
+        "Double.zeroIfMinus" {
             val number = 10.0 - 20.0
-            val actual = number.asNonnegative()
+            val actual = number.zeroIfMinus()
             actual shouldBe 0.0
         }
 
-        "BigDecimal.asNonnegative" {
+        "BigDecimal.zeroIfMinus" {
             val number = BigDecimal(10) - BigDecimal(20)
-            val actual = number.asNonnegative()
+            val actual = number.zeroIfMinus()
             actual shouldBe BigDecimal(0)
         }
     }
 
-    "Number.ifNullToZero" - {
-        "Int.ifNullToZero" {
+    "Number.zeroIfNull" - {
+        "Int.zeroIfNull" {
             val number: Int? = null
-            val actual = number.ifNullToZero()
+            val actual = number.zeroIfNull()
             actual shouldBe 0
         }
 
-        "Long.ifNullToZero" {
+        "Long.zeroIfNull" {
             val number: Long? = null
-            val actual = number.ifNullToZero()
+            val actual = number.zeroIfNull()
             actual shouldBe 0L
         }
 
-        "Float.ifNullToZero" {
+        "Float.zeroIfNull" {
             val number: Float? = null
-            val actual = number.ifNullToZero()
+            val actual = number.zeroIfNull()
             actual shouldBe 0.0F
         }
 
-        "Double.ifNullToZero" {
+        "Double.zeroIfNull" {
             val number: Double? = null
-            val actual = number.ifNullToZero()
+            val actual = number.zeroIfNull()
             actual shouldBe 0.0
         }
 
-        "BigDecimal.ifNullToZero" {
+        "BigDecimal.zeroIfNull" {
             val number: BigDecimal? = null
-            val actual = number.ifNullToZero()
+            val actual = number.zeroIfNull()
             actual shouldBe BigDecimal(0)
         }
     }

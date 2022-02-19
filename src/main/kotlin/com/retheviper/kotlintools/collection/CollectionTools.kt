@@ -3,7 +3,7 @@ package com.retheviper.kotlintools.collection
 /**
  * Swap index of elements of given indices.
  */
-fun <T> Collection<T>.swappedByIndex(indexFrom: Int, indexTo: Int): List<T> =
+inline fun <reified T> Collection<T>.swappedByIndex(indexFrom: Int, indexTo: Int): List<T> =
     toMutableList().apply {
         this[indexFrom] = this[indexTo].also { this[indexTo] = this[indexFrom] }
     }.toList()
@@ -11,19 +11,19 @@ fun <T> Collection<T>.swappedByIndex(indexFrom: Int, indexTo: Int): List<T> =
 /**
  * Swap index of elements of given conditions.
  */
-fun <T> Collection<T>.swappedByCondition(from: (T) -> Boolean, to: (T) -> Boolean): List<T> =
+inline fun <reified T> Collection<T>.swappedByCondition(from: (T) -> Boolean, to: (T) -> Boolean): List<T> =
     swappedByIndex(indexOfFirst { from(it) }, indexOfFirst { to(it) })
 
 /**
  * Swap index of elements.
  */
-fun <T> Collection<T>.swappedByElements(from: T, to: T): List<T> =
+inline fun <reified T> Collection<T>.swappedByElements(from: T, to: T): List<T> =
     swappedByIndex(indexOf(from), indexOf(to))
 
 /**
  * Performs the given [action] on element until matching the given [predicate].
  */
-fun <T> Collection<T>.forUntil(predicate: (index: Int, T) -> Boolean, action: (Int, T) -> Unit) {
+inline fun <reified T> Collection<T>.forUntil(predicate: (index: Int, T) -> Boolean, action: (Int, T) -> Unit) {
     for ((index, element) in withIndex()) {
         if (predicate(index, element)) action(index, element) else return
     }
@@ -32,7 +32,7 @@ fun <T> Collection<T>.forUntil(predicate: (index: Int, T) -> Boolean, action: (I
 /**
  * Returns a list containing the results of applying the given [transform] function to until element matching the given [predicate] in the original collection.
  */
-fun <T, R> Collection<T>.mapUntil(predicate: (index: Int, T) -> Boolean, transform: (T) -> R): List<R> =
+inline fun <reified T, R> Collection<T>.mapUntil(predicate: (index: Int, T) -> Boolean, transform: (T) -> R): List<R> =
     mutableListOf<R>().apply {
         forUntil(predicate) { _, element -> add(transform(element)) }
     }.toList()
@@ -40,7 +40,7 @@ fun <T, R> Collection<T>.mapUntil(predicate: (index: Int, T) -> Boolean, transfo
 /**
  * Performs the given [action] on key-value pairs until matching the given [predicate].
  */
-fun <K, V> Map<K, V>.forUntil(predicate: (K, V) -> Boolean, action: (K, V) -> Unit) {
+inline fun <reified K, V> Map<K, V>.forUntil(predicate: (K, V) -> Boolean, action: (K, V) -> Unit) {
     for ((key, value) in entries) {
         if (predicate(key, value)) action(key, value) else return
     }
@@ -49,7 +49,7 @@ fun <K, V> Map<K, V>.forUntil(predicate: (K, V) -> Boolean, action: (K, V) -> Un
 /**
  * Returns a list containing the results of applying the given [transform] function to key-value pairs until matching the given [predicate] in the original map.
  */
-fun <K, V, R> Map<K, V>.mapUntil(predicate: (K, V) -> Boolean, transform: (K, V) -> R): List<R> =
+inline fun <reified K, V, R> Map<K, V>.mapUntil(predicate: (K, V) -> Boolean, transform: (K, V) -> R): List<R> =
     mutableListOf<R>().apply {
         forUntil(predicate) { key, element -> add(transform(key, element)) }
     }.toList()

@@ -3,5 +3,5 @@ package com.retheviper.kotlintools.type
 /**
  * If null, set "" instead.
  */
-fun String?.ifNullToBlank(): String =
+fun String?.blankIfNull(): String =
     this ?: ""

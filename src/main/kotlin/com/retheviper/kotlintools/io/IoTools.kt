@@ -15,23 +15,3 @@ fun pipedStreams(): Pair<InputStream, OutputStream> =
     PipedInputStream().let {
         it to PipedOutputStream(it)
     }
-
-fun InputStream.toPipedStreams(): Pair<InputStream, OutputStream> {
-    return pipedStreams().apply {
-        use { transferTo(second) }
-    }
-}
-
-fun ByteArrayOutputStream.toPipedStreams(): Pair<InputStream, OutputStream> {
-    return pipedStreams().apply {
-        use { second.write(toByteArray()) }
-    }
-}
-
-fun FileOutputStream.toPipedStreams(): Pair<InputStream, OutputStream> {
-    return pipedStreams().apply {
-        val buffer = ByteBuffer.allocate(1024)
-        channel.use { it.read(buffer) }
-        second.write(buffer.array())
-    }
-}

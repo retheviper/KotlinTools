@@ -3,7 +3,7 @@ package com.retheviper.kotlintools.collection
 /**
  * Swap index of elements of given indices.
  */
-inline fun <reified T> Collection<T>.swappedByIndex(indexFrom: Int, indexTo: Int): List<T> =
+fun <T> Collection<T>.swappedByIndex(indexFrom: Int, indexTo: Int): List<T> =
     toMutableList().apply {
         this[indexFrom] = this[indexTo].also { this[indexTo] = this[indexFrom] }
     }.toList()
@@ -17,7 +17,7 @@ inline fun <reified T> Collection<T>.swappedByCondition(from: (T) -> Boolean, to
 /**
  * Swap index of elements.
  */
-inline fun <reified T> Collection<T>.swappedByElements(from: T, to: T): List<T> =
+fun <T> Collection<T>.swappedByElements(from: T, to: T): List<T> =
     swappedByIndex(indexOf(from), indexOf(to))
 
 /**

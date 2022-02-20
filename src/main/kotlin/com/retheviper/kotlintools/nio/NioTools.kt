@@ -156,6 +156,8 @@ fun Path.createIfNotExists(vararg attrs: FileAttribute<Any>): Path {
 
 /**
  * ZIP current path to [target].
+ *
+ * [target] must be a file, and it's extension must be ".zip"
  */
 fun Path.zipTo(target: Path) {
     require(!Files.isDirectory(target)) {

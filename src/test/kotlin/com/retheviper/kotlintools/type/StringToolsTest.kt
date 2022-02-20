@@ -5,7 +5,7 @@ import io.kotest.matchers.shouldBe
 
 class StringToolsTest: FreeSpec({
 
-    "String.ifNullToBlank" {
+    "String.blankIfNull" {
         val string: String? = null
         val actual = string.blankIfNull()
         actual shouldBe ""

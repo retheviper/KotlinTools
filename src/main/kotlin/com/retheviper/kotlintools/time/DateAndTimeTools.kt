@@ -2,6 +2,7 @@ package com.retheviper.kotlintools.time
 
 import java.time.LocalDate
 import java.time.LocalDateTime
+import java.time.MonthDay
 import java.time.Period
 import java.time.YearMonth
 import java.time.chrono.JapaneseDate
@@ -15,57 +16,74 @@ import java.util.Locale
 /**
  * Returns whether the date is the last day of the month.
  */
-fun LocalDate.isEndOfMonth(): Boolean = dayOfMonth == lengthOfMonth()
+fun LocalDate.isEndOfMonth(): Boolean =
+    dayOfMonth == lengthOfMonth()
 
 /**
  * Gets the [YearMonth] part of this date.
  */
-fun LocalDate.toYearMonth(): YearMonth = YearMonth.from(this)
+fun LocalDate.toYearMonth(): YearMonth =
+    YearMonth.from(this)
+
+/**
+ * Gets the [MonthDay] part of this date.
+ */
+fun LocalDate.toMonthDay(): MonthDay =
+    MonthDay.from(this)
 
 /**
  * Calculates the amount of days between two [LocalDate]s.
  */
-operator fun LocalDate.minus(date: LocalDate): Long = ChronoUnit.DAYS.between(this, date)
+operator fun LocalDate.minus(date: LocalDate): Long =
+    ChronoUnit.DAYS.between(this, date)
 
 /**
  * Calculates age from [LocalDate] to [date].
  */
-fun LocalDate.ageAt(date: LocalDate): Int = Period.between(this, date).years
+fun LocalDate.ageAt(date: LocalDate): Int =
+    Period.between(this, date).years
 
 /**
  * Returns this [LocalDateTime] formed from this date at the time of midnight, 00:00, at the start of this date.
  */
-fun LocalDateTime.atStartOfDay(): LocalDateTime = toLocalDate().atStartOfDay()
+fun LocalDateTime.atStartOfDay(): LocalDateTime =
+    toLocalDate().atStartOfDay()
 
 /**
  * Convert [Int] like `20210901` to [LocalDate].
  */
-fun Int.toLocalDate(): LocalDate = LocalDate.parse(toString(), DateTimeFormatter.BASIC_ISO_DATE)
+fun Int.toLocalDate(): LocalDate =
+    LocalDate.parse(toString(), DateTimeFormatter.BASIC_ISO_DATE)
 
 /**
  * Convert [LocalDate] to [Int].
  */
-fun LocalDate.toInt(): Int = toDigit()
+fun LocalDate.toInt(): Int =
+    toDigit()
 
 /**
  * Convert [Int] like `202109` to [YearMonth].
  */
-fun Int.toYearMonth(): YearMonth = YearMonth.parse(toString(), DateTimeFormatter.ofPattern("yyyyMM"))
+fun Int.toYearMonth(): YearMonth =
+    YearMonth.parse(toString(), DateTimeFormatter.ofPattern("yyyyMM"))
 
 /**
  * Convert [YearMonth] to [Int].
  */
-fun YearMonth.toInt(): Int = toDigit()
+fun YearMonth.toInt(): Int =
+    toDigit()
 
 /**
  * Parses Int number from it and returns the result.
  */
-private fun Temporal.toDigit(): Int = toString().filter { it.isDigit() }.toInt()
+private fun Temporal.toDigit(): Int =
+    toString().filter { it.isDigit() }.toInt()
 
 /**
  * Get year value within current japanese Era.
  */
-fun LocalDate.getJapaneseYear(): Int = JapaneseDate.from(this).get(ChronoField.YEAR_OF_ERA)
+fun LocalDate.getJapaneseYear(): Int =
+    JapaneseDate.from(this).get(ChronoField.YEAR_OF_ERA)
 
 /**
  * Get current japanese era name of its year.

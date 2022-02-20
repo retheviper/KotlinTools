@@ -17,67 +17,80 @@ import java.util.zip.ZipOutputStream
 /**
  * @see Files.createFile
  */
-fun Path.createFile(vararg attrs: FileAttribute<Any>): Path = Files.createFile(this, *attrs)
+fun Path.createFile(vararg attrs: FileAttribute<Any>): Path =
+    Files.createFile(this, *attrs)
 
 /**
  * @see Files.createDirectories
  */
-fun Path.createDirectories(vararg attrs: FileAttribute<Any>): Path = Files.createDirectories(this, *attrs)
+fun Path.createDirectories(vararg attrs: FileAttribute<Any>): Path =
+    Files.createDirectories(this, *attrs)
 
 /**
  * @see Files.copy
  */
-fun InputStream.copy(to: Path, vararg options: CopyOption): Long = Files.copy(this, to, *options)
+fun InputStream.copy(to: Path, vararg options: CopyOption): Long =
+    Files.copy(this, to, *options)
 
 /**
  * @see Files.copy
  */
-fun Path.copy(to: OutputStream): Long = Files.copy(this, to)
+fun Path.copy(to: OutputStream): Long =
+    Files.copy(this, to)
 
 /**
  * @see Files.copy
  */
-fun Path.copy(to: Path, vararg options: StandardCopyOption): Path = Files.copy(this, to, *options)
+fun Path.copy(to: Path, vararg options: StandardCopyOption): Path =
+    Files.copy(this, to, *options)
 
 /**
  * @see Files.move
  */
-fun Path.move(to: Path, vararg options: StandardCopyOption): Path = Files.move(this, to, *options)
+fun Path.move(to: Path, vararg options: StandardCopyOption): Path =
+    Files.move(this, to, *options)
 
 /**
  * @see Files.delete
  */
-fun Path.delete() = Files.delete(this)
+fun Path.delete() =
+    Files.delete(this)
 
 /**
  * @see Files.deleteIfExists
  */
-fun Path.deleteIfExists(): Boolean = Files.deleteIfExists(this)
+fun Path.deleteIfExists(): Boolean =
+    Files.deleteIfExists(this)
 
 /**
  * @see Files.exists
  */
-fun Path.exists(vararg options: LinkOption): Boolean = Files.exists(this, *options)
+fun Path.exists(vararg options: LinkOption): Boolean =
+    Files.exists(this, *options)
 
 /**
  * @see Files.notExists
  */
-fun Path.notExists(vararg options: LinkOption): Boolean = Files.notExists(this, *options)
+fun Path.notExists(vararg options: LinkOption): Boolean =
+    Files.notExists(this, *options)
 
 /**
  * @see Files.isDirectory
  */
-fun Path.isDirectory(vararg options: LinkOption): Boolean = Files.isDirectory(this, *options)
+fun Path.isDirectory(vararg options: LinkOption): Boolean =
+    Files.isDirectory(this, *options)
 
 /**
  * @see Files.isSameFile
  */
-fun Path.isSameFile(other: Path): Boolean = Files.isSameFile(this, other)
+fun Path.isSameFile(other: Path): Boolean =
+    Files.isSameFile(this, other)
 
 /**
  * @see Files.walk
  */
-fun Path.walk(vararg options: FileVisitOption): Stream<Path> = Files.walk(this, *options)
+fun Path.walk(vararg options: FileVisitOption): Stream<Path> =
+    Files.walk(this, *options)
 
 /**
  * @see Files.isHidden

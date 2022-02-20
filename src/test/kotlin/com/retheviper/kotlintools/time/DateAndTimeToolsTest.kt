@@ -5,6 +5,7 @@ import io.kotest.core.spec.style.FreeSpec
 import io.kotest.matchers.shouldBe
 import java.text.DecimalFormat
 import java.time.LocalDate
+import java.time.MonthDay
 import java.time.YearMonth
 import java.time.format.DateTimeParseException
 import java.time.format.TextStyle
@@ -49,6 +50,12 @@ class DateAndTimeToolsTest : FreeSpec({
     "LocalDate.toYearMonth" {
         val actual = dates.map { it.toYearMonth() }.distinct()
         actual shouldBe yearMonths
+    }
+
+    "LocalDate.toMonthDay" {
+        val monthDays = dates.map { MonthDay.of(it.monthValue, it.dayOfMonth) }
+        val actual = dates.map { it.toMonthDay() }.distinct()
+        actual shouldBe monthDays
     }
 
     "LocalDate.minus" {

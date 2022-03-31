@@ -53,3 +53,25 @@ inline fun <reified K, V, R> Map<K, V>.mapUntil(predicate: (K, V) -> Boolean, tr
     mutableListOf<R>().apply {
         forUntil(predicate) { key, element -> add(transform(key, element)) }
     }.toList()
+
+/**
+ * Divide a List to given number of lists.
+ */
+fun <T> List<T>.divide(number: Int): List<List<T>> {
+    val partitionSizes = IntArray(number)
+    var offset = 0
+
+    indices.forEach { _ ->
+        partitionSizes[offset++]++
+        if (offset == number) {
+            offset = 0
+        }
+    }
+
+    offset = 0
+    return partitionSizes.map { partitionSize ->
+        subList(offset, offset + partitionSize).also {
+            offset += partitionSize
+        }
+    }
+}

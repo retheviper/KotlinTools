@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
     kotlin("jvm") version "1.5.31"
     id("maven-publish")
@@ -14,7 +16,8 @@ java {
 
 dependencies {
     // Test
-    testImplementation("io.kotest:kotest-runner-junit5:5.0.1")
+    testImplementation("io.kotest:kotest-runner-junit5:5.2.1")
+    implementation(kotlin("stdlib-jdk8"))
 }
 
 tasks {
@@ -45,4 +48,12 @@ publishing {
             from(components["java"])
         }
     }
+}
+val compileKotlin: KotlinCompile by tasks
+compileKotlin.kotlinOptions {
+    jvmTarget = "1.8"
+}
+val compileTestKotlin: KotlinCompile by tasks
+compileTestKotlin.kotlinOptions {
+    jvmTarget = "1.8"
 }

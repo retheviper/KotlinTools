@@ -58,4 +58,9 @@ class CollectionToolsTest : FreeSpec({
         }
     }
 
+    "List<T>.divide" {
+        val expected = listOf(listOf("A", "B", "C", "D"), listOf("E", "F", "G"), listOf("H", "I", "J"))
+        val actual = listOf("A", "B", "C", "D", "E", "F", "G", "H", "I", "J").divide(3)
+        actual shouldBe expected
+    }
 })

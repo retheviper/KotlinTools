@@ -61,7 +61,7 @@ fun <T> List<T>.divide(number: Int): List<List<T>> {
     val partitionSizes = IntArray(number)
     var offset = 0
 
-    indices.forEach { _ ->
+    repeat(size) {
         partitionSizes[offset++]++
         if (offset == number) {
             offset = 0
@@ -75,3 +75,9 @@ fun <T> List<T>.divide(number: Int): List<List<T>> {
         }
     }
 }
+
+/**
+ * Get sublist of given [range] in its indices.
+ */
+operator fun <T> List<T>.get(range: IntRange): List<T> =
+    subList(range.first, range.last + 1)

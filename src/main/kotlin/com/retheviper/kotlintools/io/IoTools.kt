@@ -9,6 +9,4 @@ import java.io.PipedOutputStream
  * Creates a Pair of [PipedInputStream] and [PipedOutputStream] which has [connected][PipedOutputStream.connect].
  */
 fun pipedStreams(): Pair<InputStream, OutputStream> =
-    PipedInputStream().let {
-        it to PipedOutputStream(it)
-    }
+    PipedInputStream().let { it to PipedOutputStream(it) }

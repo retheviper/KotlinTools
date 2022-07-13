@@ -69,4 +69,17 @@ class CollectionToolsTest : FreeSpec({
         val actual = list[1..2]
         actual shouldBe expected
     }
+
+    "List<T>.at(Int)" - {
+        "positive index" {
+            val expected = "B"
+            val actual = list.at(1)
+            actual shouldBe expected
+        }
+        "negative index" {
+            val expected = "D"
+            val actual = list.at(-1)
+            actual shouldBe expected
+        }
+    }
 })

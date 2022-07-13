@@ -81,3 +81,16 @@ fun <T> List<T>.divide(number: Int): List<List<T>> {
  */
 operator fun <T> List<T>.get(range: IntRange): List<T> =
     subList(range.first, range.last + 1)
+
+/**
+ * Returns the element at a given index. It supports positive and negative indices (-1 refers to the last element, -2 refers to the second-last element, etc.)
+ */
+fun <T> List<T>.at(index: Int): T {
+    return (size + index).let {
+        if (size < it) {
+            this[index]
+        } else {
+            this[it]
+        }
+    }
+}

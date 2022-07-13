@@ -14,7 +14,7 @@ java {
 
 dependencies {
     // Test
-    testImplementation("io.kotest:kotest-runner-junit5:5.2.1")
+    testImplementation("io.kotest:kotest-runner-junit5:5.3.1")
     implementation(kotlin("stdlib-jdk8"))
 }
 
